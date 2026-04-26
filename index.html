@@ -16,175 +16,290 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--dark); color: #fff; line-height: 1.6; overflow-x: hidden; position: relative; }
+        body { background-color: var(--dark); color: #fff; line-height: 1.6; overflow-x: hidden; }
 
-        /* طبقة الأيقونات في الخلفية */
-        .bg-icons { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.15; overflow: hidden; }
-        .floating-icon { position: absolute; font-size: 2rem; color: var(--primary); animation: float 15s infinite linear; }
-        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
-        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1a103d 0%, #050505 100%); z-index: -2; }
-
-        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(to bottom, rgba(12, 1, 41, 0.7), var(--dark)), url('picture.png'); background-size: cover; background-position: center; }
-        header h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
-
-        /* التعديل المطلوب: الصورة بجانب الشرح في الكمبيوتر وتحته في التلفون */
-        .about-section { 
-            padding: 100px 8%; 
-            display: flex; 
-            flex-direction: row; /* افتراضي للكمبيوتر: بجانب بعض */
-            flex-wrap: wrap; /* للسماح بالنزول للسطر التالي */
-            gap: 50px; 
-            align-items: center; 
+        .bg-gradient {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a103d 0%, #050505 100%);
+            z-index: -1;
         }
 
-        .about-content { flex: 1; min-width: 300px; }
-        .about-content h2 { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: right; }
-        .about-content p { font-size: 1.1rem; color: #ccc; margin-bottom: 20px; text-align: justify; }
-
-        .about-image-placeholder { 
-            flex: 1;
-            min-width: 300px;
-            background: #1a0b3c; 
-            height: 450px; 
-            border-radius: 40px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
-            overflow: hidden; 
-            border: 1px solid var(--border);
-        }
-        .about-image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* تعديلات التلفون فقط */
-        @media (max-width: 992px) {
-            .about-section { flex-direction: column; text-align: center; }
-            .about-content { order: 1; } /* النص أولاً */
-            .about-image-placeholder { order: 2; width: 100%; height: 300px; margin-top: 20px; } /* الصورة ثانياً */
-            .about-content h2 { text-align: center; font-size: 2.5rem; }
+        /* الهيدر الترحيبي */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark)),
+                        url('https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .skill-item { background: rgba(20, 10, 40, 0.6); padding: 12px 20px; border-right: 4px solid var(--secondary); font-size: 0.95rem; color: #eee; }
+        header h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
 
-        .modules-section { padding: 80px 5%; text-align: center; }
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .module-card { background: var(--card-bg); border-radius: 30px; padding: 50px 30px; border: 1px solid #222; transition: 0.4s; cursor: pointer; }
-        .module-card:hover { transform: translateY(-15px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.1); }
+        /* قسم عن التخصص (نفس تصميم الصورة الأولى) */
+        .about-section {
+            padding: 100px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: #1a0b3c;
+            height: 400px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .about-content h2 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            background: rgba(20, 10, 40, 0.6);
+            padding: 12px 20px;
+            border-right: 4px solid var(--secondary);
+            font-size: 0.95rem;
+            color: #eee;
+        }
+
+        /* قسم المواد التخصصية (نفس تصميم الصورة الثانية) */
+        .modules-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .modules-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px 30px;
+            border: 1px solid #222;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.1);
+        }
+
         .module-icon { font-size: 4rem; margin-bottom: 25px; display: block; }
-        .module-card h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 20px; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #0a0a0a; border: 1px solid var(--primary); border-radius: 30px; max-width: 1100px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 50px; position: relative; }
-        .close-btn { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: var(--primary); z-index: 10; }
-        .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .gallery-box { background: #1a1a1a; height: 220px; border-radius: 20px; border: 1px solid #333; overflow: hidden; position: relative; }
-        .gallery-box img { width: 100%; height: 100%; object-fit: cover; }
-        .gallery-label { font-size: 1rem; color: var(--primary); font-weight: bold; margin-top: 10px; }
+        .module-card h3 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
 
-        .interactive-zone { padding: 80px 10%; text-align: center; }
-        .skill-bubbles { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; }
-        .bubble { padding: 15px 25px; border-radius: 50px; background: var(--glass); border: 1px solid var(--border); cursor: pointer; transition: 0.3s; font-weight: bold; color: #ccc; }
-        .bubble:hover, .bubble.active { background: var(--primary); color: var(--dark); transform: scale(1.1); }
-        #skill-display { margin-top: 40px; min-height: 150px; padding: 30px; border-radius: 20px; background: rgba(0,0,0,0.3); border-right: 5px solid var(--primary); font-size: 1.3rem; }
+        .module-card p {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
 
-        footer { padding: 100px 10%; text-align: center; background: #000; border-top: 2px solid var(--secondary); }
-        .signature { font-size: 1.5rem; font-weight: 900; }
-        .batool-name { background: linear-gradient(to right, #00f2ff, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        .gallery-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Modals */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background: #111; border: 1px solid var(--primary); border-radius: 30px;
+            max-width: 900px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 40px; position: relative;
+        }
+        .close-btn { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: var(--primary); }
+
+        /* تذييل الصفحة */
+        footer {
+            padding: 100px 10%;
+            text-align: center;
+            background: #000;
+            border-top: 2px solid var(--secondary);
+        }
+
+        .signature {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 992px) {
+            .about-section { grid-template-columns: 1fr; }
+            .about-image-placeholder { height: 250px; order: 2; }
+        }
     </style>
 </head>
 <body>
 
     <div class="bg-gradient"></div>
-    <div class="bg-icons" id="bgIcons"></div>
 
     <header>
         <h1>BTEC Creative Media</h1>
-        <p style="font-size: 1.4rem; color: #ccc;">انجازاتنا لعام 2026 - مدرسة تلاع العلي الثانوية للبنات</p>
+        <p style="font-size: 1.4rem; color: #ccc;">يوم المهن 2026 - مدرسة بتول الإبداعية</p>
     </header>
 
+    <!-- قسم عن التخصص المقتبس من الصورة 1 -->
     <section class="about-section">
+        <div class="about-image-placeholder"></div>
         <div class="about-content">
             <h2>عن التخصص</h2>
             <p>تخصص الوسائط الإبداعية (BTEC Creative Media) ليس مجرد دراسة، بل هو رحلة في عالم الصناعة الرقمية. نركز على تطوير المهارات العملية التي يتطلبها سوق العمل العالمي في مجالات التصميم والإنتاج.</p>
-            <p>يُعد هذا التخصص رحلة استثنائية مصممة خصيصاً لتهيئة الطلاب بشكل مباشر لسوق العمل العالمي. ما يميز هذا المسار هو أنه يمنح الطالب عند تخرجه شهادة دبلوم دولية معتمدة، تمكنه من الانخراط فوراً في سوق العمل وبدء مسيرته المهنية حتى قبل الالتحاق بالجامعة.</p>
-            <p>من خلال البرنامج، نكتسب مهارات تقنية عالية الجودة تدمج الفن بالتكنولوجيا، مما يجعلنا قادرين على المنافسة في قطاعات الميديا والإنتاج الرقمي كقادة للمستقبل.</p>
+            <p>يتعلم الطلاب كيفية دمج الفن التقليدي مع أحدث برمجيات Adobe ووسائل التكنولوجيا لخلق محتوى بصري قادر على المنافسة والتأثير.</p>
             <div class="skills-grid">
-                <div class="skill-item">التصميم والطباعة</div>
-                <div class="skill-item">مونتاج الفيديو</div>
+                <div class="skill-item">تطوير الهوية البصرية</div>
+                <div class="skill-item">مونتاج الفيديو الاحترافي</div>
                 <div class="skill-item">التصوير الفوتوغرافي</div>
-                <div class="skill-item">2D/3D الموشن جرافيك</div>
-                <div class="skill-item"> برمجة الويب والألعاب</div>
-                <div class="skill-item">صناعة الفيديو والأفلام</div>
+                <div class="skill-item">الموشن جرافيك 2D/3D</div>
+                <div class="skill-item">إخراج المحتوى الإبداعي</div>
+                <div class="skill-item">إدارة منصات التواصل</div>
             </div>
-        </div>
-        <!-- الصورة هنا ستكون بجانب النص في الكمبيوتر وتحته في الهاتف -->
-        <div class="about-image-placeholder">
-            <img src="creative media.png" alt="Creative Media">
         </div>
     </section>
 
+    <!-- قسم المواد المقتبس من الصورة 2 -->
     <section class="modules-section">
         <h2>المواد التخصصية</h2>
         <div class="modules-grid">
-            <div class="module-card" onclick="openModal('design-modal')"><span class="module-icon">🎨</span><h3>التصميم الجرافيكي</h3></div>
-            <div class="module-card" onclick="openModal('edit-modal')"><span class="module-icon">🎬</span><h3>المونتاج الرقمي</h3></div>
-            <div class="module-card" onclick="openModal('print-modal')"><span class="module-icon">🖨️</span><h3>مادة الطباعة</h3></div>
-            <div class="module-card" onclick="openModal('photo-modal')"><span class="module-icon">📸</span><h3>التصوير الفوتوغرافي</h3></div>
-            <div class="module-card" onclick="openModal('motion-modal')"><span class="module-icon">✨</span><h3>الموشن والأنيميشن</h3></div>
-            <div class="module-card" onclick="openModal('web-modal')"><span class="module-icon">💻</span><h3>الالعاب والويب</h3></div>
-        </div>  
-    </section>
+            
+            <!-- مادة التصميم -->
+            <div class="module-card" onclick="openModal('design-modal')">
+                <span class="module-icon">🎨</span>
+                <h3>التصميم الجرافيكي</h3>
+                <p>بناء الهوية البصرية والشعارات من الفكرة وحتى التنفيذ النهائي.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
 
-    <div id="design-modal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('design-modal')">&times;</span><h2 style="color:var(--primary)">معرض التصميم الجرافيكي</h2><div class="modal-gallery">
-        <div class="gallery-item-wrapper"><div class="gallery-box"><img src="almas.JPEG"></div><div class="gallery-label">شعار by batool</div></div>
-        <div class="gallery-item-wrapper"><div class="gallery-box"><img src="coffee.JPEG"></div><div class="gallery-label">هوية by batool</div></div>
-        <div class="gallery-item-wrapper"><div class="gallery-box"><img src="arts.JPEG"></div><div class="gallery-label">بوستر by batool</div></div>
-    </div></div></div>
+            <!-- مادة المونتاج والافلام -->
+            <div class="module-card" onclick="openModal('edit-modal')">
+                <span class="module-icon">🎬</span>
+                <h3>المونتاج الرقمي</h3>
+                <p>إتقان برامج Adobe Premiere و CapCut لإخراج محتوى فيديو احترافي.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
 
-    <section class="interactive-zone">
-        <h2 style="color: var(--primary);">استكشف مهاراتنا التطبيقية</h2>
-        <div class="skill-bubbles">
-            <div class="bubble" onclick="showSkill('adobe')">برمجيات Adobe</div>
-            <div class="bubble" onclick="showSkill('market')">تحليل سوق العمل</div>
-            <div class="bubble" onclick="showSkill('production')">إدارة الإنتاج</div>
-            <div class="bubble" onclick="showSkill('cmyk')">فصل الألوان</div>
-            <div class="bubble" onclick="showSkill('story')">بناء السيناريو</div>
+            <!-- مادة الطباعة -->
+            <div class="module-card" onclick="openModal('print-modal')">
+                <span class="module-icon">🖨️</span>
+                <h3>مادة الطباعة</h3>
+                <p>تعرف على تقنيات فصل الألوان، التغليف، وتجهيز الملفات للطباعة التجارية.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
+
+             <!-- مادة التصوير -->
+             <div class="module-card" onclick="openModal('photo-modal')">
+                <span class="module-icon">📸</span>
+                <h3>التصوير الفوتوغرافي</h3>
+                <p>فنون الإضاءة، التكوين، وتوثيق اللحظة بعدسات احترافية.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
+
+            <!-- مادة الموشن -->
+            <div class="module-card" onclick="openModal('motion-modal')">
+                <span class="module-icon">✨</span>
+                <h3>الموشن والأنيميشن</h3>
+                <p>تحريك الأفكار وتحويل الرسوم إلى قصص حركية مبهرة.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
+
+            <!-- مادة البرمجة -->
+            <div class="module-card" onclick="openModal('web-modal')">
+                <span class="module-icon">💻</span>
+                <h3>البرمجة والويب</h3>
+                <p>بناء المنصات الرقمية وتصميم واجهات المستخدم الحديثة.</p>
+                <span class="gallery-link">إضغط لعرض المعرض ←</span>
+            </div>
+
         </div>
-        <div id="skill-display">إختر مهارة من الأعلى لتكتشف إبداعنا..</div>
     </section>
+
+    <!-- Modals (نوافذ العرض) -->
+    <div id="print-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('print-modal')">&times;</span>
+            <h2 style="color:var(--primary)">معرض مادة الطباعة</h2>
+            <div style="margin-top:20px; display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                <div style="background:#222; height:150px; border-radius:15px;"></div>
+                <div style="background:#222; height:150px; border-radius:15px;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ملاحظة: يمكنك تكرار الـ Modals لبقية المواد بنفس الطريقة -->
 
     <footer>
-        <div class="signature">تصميم الطالبة: <span class="batool-name">بتول مروان شملخ</span></div>
-        <div style="font-size: 1.1rem; color: #bbb; margin-top: 8px;">مديرة المدرسة: الدكتورة نبيلة فريحات</div>
-        <p style="color: var(--primary); margin-top: 25px; font-weight: bold;">نسعى دائماً للمركز الأول على المملكة - BTEC Creative Media</p>
+        <p style="color: #666; margin-bottom: 10px;">DESIGNED BY</p>
+        <div class="signature">بتول مروان شملخ</div>
+        <p style="color: var(--primary); margin-top: 15px; font-weight: bold;">المركز الأول على مستوى المملكة - BTEC Media</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #333;">&copy; 2026 جميع الحقوق محفوظة لبتول شملخ</p>
     </footer>
 
     <script>
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
-
-        const skillData = {
-            'adobe': 'نتمكن من حزمة Adobe كاملة لتحويل الخيال إلى واقع بصري احترافي.',
-            'market': 'دراستنا تعتمد على نماذج حقيقية من سوق العمل لجعلنا جاهزين للتوظيف.',
-            'production': 'نتعلم كيف ندير المشروع من الفكرة وحتى التسليم النهائي للعميل.',
-            'cmyk': 'في مادة الطباعة نتقن تجهيز الملفات التقنية لضمان جودة المنتج.',
-            'story': 'نتعلم فن سرد القصص لجذب الجمهور والتأثير فيه.'
-        };
-
-        function showSkill(key) {
-            document.getElementById('skill-display').innerText = skillData[key];
-            document.querySelectorAll('.bubble').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        function openModal(id) {
+            var modal = document.getElementById(id);
+            if(modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
         }
-
-        // أيقونات الخلفية
-        const icons = ['📷', '🎬', '🎨'];
-        const bgIconsContainer = document.getElementById('bgIcons');
-        for (let i = 0; i < 20; i++) {
-            const icon = document.createElement('div');
-            icon.className = 'floating-icon';
-            icon.innerText = icons[Math.floor(Math.random() * icons.length)];
-            icon.style.left = Math.random() * 100 + 'vw';
-            icon.style.animationDelay = Math.random() * 10 + 's';
-            bgIconsContainer.appendChild(icon);
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
     </script>
 </body>
